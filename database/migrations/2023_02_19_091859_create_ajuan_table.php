@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_ajuan');
             $table->foreignId('created_by');
             $table->string('nama_surat');
-            $table->string('surat_untuk)');
+            $table->string('surat_untuk');
             $table->text('perihal_surat');
             $table->enum('jenis_surat',['internal', 'external']);
             $table->string('nomor_surat')->nullable();

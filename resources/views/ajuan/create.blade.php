@@ -13,7 +13,8 @@
         <div class="card-body pt-3">
     <div class="card-body pt-3">
         <!--begin::Form-->
-        <form id="kt_ecommerce_settings_general_form" class="form" action="#">
+        <form class="form" action="/ajuan/create" method="post">
+            @csrf
             <!--begin::Input group-->
             <div class="fv-row mb-3">
                 <!--begin::Label-->
@@ -36,7 +37,7 @@
                 </label>
                 <!--end::Label-->
                 <!--begin::Input-->
-                <input type="text" class="form-control form-control-solid" name="tujuan_surat" value="" />
+                <input type="text" class="form-control form-control-solid" name="surat_untuk" value="" />
                 <!--end::Input-->
             </div>
             <!--end::Input group-->
@@ -87,7 +88,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="no_surat" value="" />
+                        <input type="text" class="form-control form-control-solid" name="nomor_surat" value="" />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->

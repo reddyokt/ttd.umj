@@ -21,3 +21,4 @@ use App\Http\Controllers\AjuanController;
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/ajuan/create', [AjuanController::class, 'create']);
+Route::post('/ajuan/create', [AjuanController::class, 'store']);
