@@ -11,5 +11,5 @@ class Ajuan extends Model
 
     protected $table = 'ajuan';
     protected $primaryKey = 'id_ajuan';
-    protected $fillable = ['created_by','nama_surat','surat_untuk', 'perihal_surat', 'jenis_surat', 'nomor_surat', 'tanggal_surat', 'status'];
+    protected $fillable = ['created_by','nama_surat','surat_untuk', 'perihal_surat', 'jenis_surat', 'nomor_surat', 'tanggal_surat', 'status','token'];
 }

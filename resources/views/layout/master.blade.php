@@ -29,7 +29,7 @@
         @if (trim($__env->yieldContent('page-style')))
             @yield('page-style')
         @endif
-		<link rel="shortcut icon" href="{{asset('assets/media/icon-umj.png')}}" />
+		<link rel="shortcut icon" href="{{asset('assets/media/logo_umj.png')}}" />
         @stack('after-styles')
 		<!--end::Global Stylesheets Bundle-->
 	</head>

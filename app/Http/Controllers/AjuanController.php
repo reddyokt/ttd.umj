@@ -6,6 +6,7 @@ use App\Models\Ajuan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Dirape\Token\Token;
 
 class AjuanController extends Controller
 {
@@ -31,8 +32,24 @@ class AjuanController extends Controller
     'jenis_surat'=> $request->jenis_surat,
     'nomor_surat'=>$request->nomor_surat,
     'tanggal_surat' => $newtanggal_surat,
+    'token' => (new Token())->unique('ajuan', 'token', 15),
     ]);
 
        return redirect ('/dashboard')->with('success', 'Permohonan Tanda Tangan berhasil ditambahkan');
+    }
+
+    public function accept($id_ajuan)
+    {
+        $accept = Ajuan::find($id_ajuan);
+        $accept->update(['status'=>'Diterima']);
+
+        return redirect ('/dashboard')->with('success', 'Permohonan Tanda Tangan disetujui');
+    }
+
+    public function showtoken($id_ajuan)
+    {
+        $data = Ajuan ::find($id_ajuan);
+
+        return view ('showQR.page', compact ('data'));
     }
 }

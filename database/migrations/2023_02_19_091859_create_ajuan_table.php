@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ajuan', function (Blueprint $table) {
             $table->id('id_ajuan');
-            $table->foreignId('created_by');
+            $table->foreignId('created_by')->nullable();
             $table->string('nama_surat');
             $table->string('surat_untuk');
             $table->text('perihal_surat');
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('nomor_surat')->nullable();
             $table->date('tanggal_surat');
             $table->enum('status',['Menunggu', 'Diterima', 'Ditolak'])->default('Menunggu');
+            $table->string('token')->unique();
             $table->foreignId('updated_by')->nullable();
             $table->timestamps();
         });

@@ -1,6 +1,7 @@
 @extends('layout.master')
 @section('title', __('Dashboard'))
 
+
 @section('content')
 
 <!--begin::Card-->
@@ -32,8 +33,9 @@
                         <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
                             <th class="p-0 pb-3 min-w-175px text-start">Nama Pemohon</th>
                             <th class="p-0 pb-3 min-w-50px text-center">No Ajuan </th>
-                            <th class="p-0 pb-3 min-w-300px text-center">Ajuan Untuk</th>
+                            <th class="p-0 pb-3 min-w-300px text-center">Detail Surat/Ajuan</th>
                             <th class="p-0 pb-3 min-w-150px text-center">Status</th>
+                            <th class="p-0 pb-3 min-w-175px text-center">QR-CODE</th>
                             <th class="p-0 pb-3 w-100px text-center pe-12">Action</th>
                         </tr>
                     </thead>
@@ -57,18 +59,23 @@
                                 <span class="text-gray-600 fw-bold fs-8">00{{ $dt->id_ajuan }}</span>
                             </td>
                             <td class="text-start pe-0">
-                                <span class="text-gray-600 fw-bold fs-9"><small>
-                                Nomor Surat/Dokumen : {{ $dt->nomor_surat }}
-                                <br>
-                                Surat/Dokumen : {{ $dt->nama_surat }}
-                                <br>
-                                Untuk : {{ $dt->surat_untuk }}
-                                <br>
-                                Perihal : {{ $dt->perihal_surat }}
-                                <br>
-                                Tanggal Surat : {{ $dt->tanggal_surat }}
-                                <br>
-                                Tanggal Diajukan : {{ $dt->created_at }}</small>
+                                <span class="text-gray-600 fw-bold fs-9">
+                                    <small>
+                                        Nomor Surat/Dokumen : {{ $dt->nomor_surat }}
+                                        <br>
+                                        Surat/Dokumen : {{ $dt->nama_surat }}
+                                    </small>
+                                </span>
+                                <span class="p-10">
+                                    <a href="#" class="btn btn-sm btn-icon btn-bg-white btn-active-color-success w-20px h-20px" style="margin-right: 10px" data-bs-toggle="modal" data-bs-target="#kt_modal_1-{{ $dt->id_ajuan }}">
+                                        <span class="svg-icon svg-icon svg-icon-2hx">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"/>
+                                                <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"/>
+                                            </svg>
+                                        </span>
+                                    <!--end::Svg Icon-->
+                                    </a>
                                 </span>
                             </td>
                             <td class="text-center pe-0">
@@ -84,9 +91,14 @@
                                 <!--end::Svg Icon-->{{ $dt->status }}</span>
                                 <!--end::Label-->
                             </td>
+                            <td>
+                                <div class="visible-print text-center">
+                                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->generate(URL('/show/'.$dt->id_ajuan))) !!}" style="width: 50px;">
+                                </div>
+                            </td>
 
                             <td class="text-start g-1">
-                                <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-success w-20px h-20px" style="margin-right: 10px">
+                                <a href="/accept/{{ $dt->id_ajuan }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-success w-20px h-20px" style="margin-right: 10px" onclick="return confirm('Yakin ingin menerima Permohonan ini?!!!')">
                                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen037.svg-->
                                     <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"/>
@@ -149,6 +161,9 @@
                                 </span>
                                 <!--end::Svg Icon-->Diterima</span>
                                 <!--end::Label-->
+                            </td>
+                            <td>
+
                             </td>
 
                             <td class="text-start g-1">
@@ -214,6 +229,9 @@
                                 <!--end::Svg Icon-->Ditolak</span>
                                 <!--end::Label-->
                             </td>
+                            <td>
+
+                            </td>
                             <td class="text-start g-1">
                                 <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-success w-20px h-20px" style="margin-right: 10px">
                                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen037.svg-->
@@ -277,6 +295,9 @@
                                 <!--end::Svg Icon-->Menunggu</span>
                                 <!--end::Label-->
                             </td>
+                            <td>
+
+                            </td>
                             <td class="text-start g-1">
                                 <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-success w-20px h-20px" style="margin-right: 10px">
                                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen037.svg-->
@@ -318,14 +339,73 @@
 
     </div>
     <!--end::Card header-->
-    <!--begin::Card body-->
+    {{-- <!--begin::Card body-->
     <div class="card-body">
 
 
     </div>
-    <!--end::Card body-->
+    <!--end::Card body--> --}}
 </div>
 <!--end::Card-->
+
+<!---------------------------Start Modal---------------------------------------->
+@foreach ( $data as $dt )
+
+<div class="modal fade" tabindex="-1" id="kt_modal_1-{{ $dt->id_ajuan }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detail Surat/Dokumen</h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-1"></span>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table gs-2 gy-2 gx-2">
+                            <tr>
+                                <td class="w-50">Nama Surat</td>
+                                <td>{{ $dt->nama_surat }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">Surat Untuk</td>
+                                <td>{{ $dt->surat_untuk }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">Perihal</td>
+                                <td>{{ $dt->perihal_surat }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">Jenis Surat</td>
+                                <td>{{ $dt->jenis_surat }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">Nomor Surat</td>
+                                <td>{{ $dt->nomor_surat }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">Tanggal Surat</td>
+                                <td>{{ $dt->tanggal_surat }}</td>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endforeach
+<!---------------------------End Modal---------------------------------------->
+
+
 @stop
 
 @section('page-script')
