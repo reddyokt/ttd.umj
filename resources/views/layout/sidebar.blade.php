@@ -44,19 +44,17 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Dashboards</span>
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="/dashboard">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                        <!--end:Menu link-->
                     </span>
                     <!--end:Menu link-->
                     <!--begin:Menu sub-->
-                </div>
-                <!--end:Menu item-->
-                <!--begin:Menu item-->
-                <div class="menu-item pt-5">
-                    <!--begin:Menu content-->
-                    <div class="menu-content">
-                        <span class="menu-heading fw-bold text-uppercase fs-7">Pages</span>
-                    </div>
-                    <!--end:Menu content-->
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
@@ -73,7 +71,14 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">User Master</span>
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="/user/index">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">User Master</span>
+                        </a>
+                        <!--end:Menu link-->
                     </span>
                     <!--end:Menu link-->
                 </div>

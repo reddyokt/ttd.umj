@@ -46,6 +46,12 @@
                                     <div class="table-responsive">
                                         <table class="table gs-2 gy-2 gx-2" style="font-size: 10px;">
                                             <tr>
+                                                <td style="width:100px;" colspan="2">Tanda Tangan ini dikeluarkan oleh Prof. Dr. Ir. Tri Yuni Hendrawati, M.Si</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:100px;" colspan="2">Untuk Keperluan sebagai berikut :</td>
+                                            </tr>
+                                            <tr>
                                                 <td style="width:100px;">Nama Surat</td>
                                                 <td>{{ $data->nama_surat }}</td>
                                             </tr>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AjuanController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,10 @@ use App\Http\Controllers\AjuanController;
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/ajuan/create', [AjuanController::class, 'create']);
 Route::post('/ajuan/create', [AjuanController::class, 'store']);
-
 Route::get('/accept/{id_ajuan}', [AjuanController::class, 'accept']);
-
 Route::get('/show/{token}', [AjuanController::class, 'showtoken']);
+
+Route::get('/user/index', [UserController::class, 'index']);
+Route::get('/user/create', [UserController::class, 'create']);
+Route::post('/user/create', [UserController::class, 'store']);
+
