@@ -12,13 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'users';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'role_id',
@@ -46,5 +44,10 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class,'role_id' , 'id_role' );
+    }
+
+    public function ajuan()
+    {
+        return $this->belongsTo(Ajuan::class, 'id', 'created_by' );
     }
 }

@@ -41,15 +41,15 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
+                        @foreach ( $data as $dt )
                         <tr>
-                            @foreach ( $data as $dt )
                             <td>{{ $loop->iteration  }}</td>
                             <td>{{ $dt->name }}</td>
                             <td>{{ $dt->role->role_name }}</td>
                             <td></td>
-                            @endforeach
 
                         </tr>
+                        @endforeach
                     </tbody>
                     <!--end::Table body-->
                 </table>

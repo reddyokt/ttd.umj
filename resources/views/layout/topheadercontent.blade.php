@@ -146,7 +146,7 @@
                     </div>
                 </div>
                 @if(Session::get('role_other') != null)
-                @php 
+                @php
                     $session = Session::get('role_other');
                     $name = $session->name;
                 @endphp

@@ -29,8 +29,11 @@
 			<div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
 
 			</div>
+
+
 			<!--end::Menu-->
 		</div>
+        <div class="mt-6"><h1>Assalamu'alaikum {{ auth()->user()->name }}</h1></div>
 		<!--end::Menu wrapper-->
 		<!--begin::Navbar-->
 		<div class="app-navbar flex-shrink-0">
@@ -193,6 +196,14 @@
                 	<input type="hidden" name="userid" id="userid" value="">
 					<div class="menu-item px-5">
 						<a href="#" id="logout" class="menu-link px-5"></a>
+					</div>
+					<!--end::Menu item-->
+                    <!--begin::Menu separator-->
+					<div class="separator my-2"></div>
+					<!--end::Menu separator-->
+					<!--begin::Menu item-->
+					<div class="menu-item px-5">
+						<a href="/logout" class="menu-link px-5">Logout</a>
 					</div>
 					<!--end::Menu item-->
 				</div>

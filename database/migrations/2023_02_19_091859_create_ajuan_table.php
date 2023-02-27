@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ajuan', function (Blueprint $table) {
             $table->id('id_ajuan');
-            $table->foreignId('created_by')->nullable();
+            $table->foreignId('created_by');
             $table->string('nama_surat');
             $table->string('surat_untuk');
             $table->text('perihal_surat');

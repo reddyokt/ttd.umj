@@ -16,6 +16,7 @@
         <form class="form" action="/ajuan/create" method="post">
             @csrf
             <!--begin::Input group-->
+            <input type="hidden" name="created_by" value="{{ auth()->user()->id }}">
             <div class="fv-row mb-3">
                 <!--begin::Label-->
                 <label class="fs-6 fw-semibold form-label mt-3">

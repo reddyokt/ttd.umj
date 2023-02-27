@@ -26,6 +26,7 @@ class AjuanController extends Controller
     $newtanggal_surat = $tanggal_surat->format('Y-m-d');
 
     $ajuan = Ajuan::create([
+    'created_by' => $request->created_by,
     'nama_surat' => $request->nama_surat,
     'surat_untuk'=> $request->surat_untuk,
     'perihal_surat'=> $request->perihal_surat,

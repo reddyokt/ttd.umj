@@ -5,6 +5,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AjuanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,17 +17,19 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware('auth');
 Route::get('/ajuan/create', [AjuanController::class, 'create']);
 Route::post('/ajuan/create', [AjuanController::class, 'store']);
 Route::get('/accept/{id_ajuan}', [AjuanController::class, 'accept']);
 Route::get('/show/{token}', [AjuanController::class, 'showtoken']);
 
-Route::get('/user/index', [UserController::class, 'index']);
+Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create']);
 Route::post('/user/create', [UserController::class, 'store']);
 
