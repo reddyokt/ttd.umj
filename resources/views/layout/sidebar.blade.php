@@ -57,6 +57,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @if (auth()->user()->role_id == 1)
                 <div  class="menu-item menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link">
@@ -80,6 +81,7 @@
                     </span>
                     <!--end:Menu link-->
                 </div>
+                @endif
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 {{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

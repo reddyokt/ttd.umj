@@ -28,13 +28,22 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //dd($request->toArray());
-        $user = User::create([
-            'name' => $request->nama,
-            'email' => $request->email,
-            'role_id'=> $request->role_id,
-            'password'=> Hash::make('qwerty'),
-            ]);
 
+        $validatedData = $request->validate([
+            'name'=> 'required|max:50',
+            'username'=> 'required|max:50',
+            'email'=> 'email|required',
+            'role_id' => 'required',
+            'profile_picture' => 'image|file|required|max:2048'
+        ]);
+
+        if($request->file('profile_picture')) {
+            $validatedData['profile_picture'] = $request->file('profile_picture')->store('profile_picture');
+        }
+
+        $validatedData ['password'] = Hash::make('qwerty');
+
+        User::create($validatedData);
         return redirect ('/user/index');
     }
 }

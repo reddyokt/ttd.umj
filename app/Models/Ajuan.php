@@ -13,9 +13,9 @@ class Ajuan extends Model
     protected $primaryKey = 'id_ajuan';
     protected $fillable = ['created_by','nama_surat','surat_untuk', 'perihal_surat', 'jenis_surat', 'nomor_surat', 'tanggal_surat', 'status','token'];
 
-    public function user()
+    public function users()
     {
-        return $this->hasMany(Ajuan::class, 'created_by', 'id');
+        return $this->hasOne(User::class, 'id', 'created_by' );
     }
 
 }

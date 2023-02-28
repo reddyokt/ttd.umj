@@ -27,7 +27,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/ajuan/create', [AjuanController::class, 'create']);
 Route::post('/ajuan/create', [AjuanController::class, 'store']);
 Route::get('/accept/{id_ajuan}', [AjuanController::class, 'accept']);
-Route::get('/show/{token}', [AjuanController::class, 'showtoken']);
+Route::get('/show/{id_ajuan}{token}', [AjuanController::class, 'showtoken']);
 
 Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create']);

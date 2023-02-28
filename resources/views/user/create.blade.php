@@ -13,7 +13,7 @@
         <div class="card-body pt-3">
     <div class="card-body pt-3">
         <!--begin::Form-->
-        <form class="form" action="/user/create" method="post">
+        <form class="form" action="/user/create" method="post" enctype="multipart/form-data">
             @csrf
             <!--begin::Input group-->
             <div class="fv-row mb-3">
@@ -24,7 +24,20 @@
                 </label>
                 <!--end::Label-->
                 <!--begin::Input-->
-                <input type="text" class="form-control form-control-solid" name="nama" value="" />
+                <input type="text" class="form-control form-control-solid" name="name" value="" />
+                <!--end::Input-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="fv-row mb-3">
+                <!--begin::Label-->
+                <label class="fs-6 fw-semibold form-label mt-3">
+                    <span class="required">Username</span>
+                    <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan Username"></i>
+                </label>
+                <!--end::Label-->
+                <!--begin::Input-->
+                <input type="text" class="form-control form-control-solid" name="username" value="" />
                 <!--end::Input-->
             </div>
             <!--end::Input group-->
@@ -45,7 +58,7 @@
             <div class="col">
                 <label class="fs-6 fw-semibold form-label mt-3">
                     <span class="required">Role</span>
-                    <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan Nama lengkap"></i>
+                    <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan Role"></i>
                 </label>
                 <select class="form-control form-control-solid" name="role_id">
                     <option selected disabled>Pilih Role</option>
@@ -53,6 +66,17 @@
                             <option value="{{ $role->id_role }}"> {{ $role->role_name }}</option>
                         @endforeach
                 </select>
+                <!--end::Input-->
+            </div>
+                    <!--end::Input group-->
+
+                <!--begin::Input-->
+            <div class="col">
+                <label class="fs-6 fw-semibold form-label mt-3">
+                    <span class="required">Profile Picture</span>
+                    <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan Profile Picture"></i>
+                </label>
+                <input class="form-control form-control-solid" type="file" name="profile_picture" accept="image/png, image/jpeg">
                 <!--end::Input-->
             </div>
                     <!--end::Input group-->

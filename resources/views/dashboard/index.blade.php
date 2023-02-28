@@ -31,7 +31,7 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
-                            <th class="p-0 pb-3 min-w-175px text-start">Nama Pemohon</th>
+                            <th class="p-0 pb-3 min-w-200px text-start">Nama Pemohon</th>
                             <th class="p-0 pb-3 min-w-50px text-center">No Ajuan </th>
                             <th class="p-0 pb-3 min-w-300px text-center">Detail Surat/Ajuan</th>
                             <th class="p-0 pb-3 min-w-150px text-center">Status</th>
@@ -47,11 +47,15 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-50px me-3">
-                                        <img src="assets/media/avatars/darto.png" class="" alt="" />
+                                        @if ($dt->users->profile_picture != '' )
+                                        <img src="{{ URL($dt->users->profile_picture) }}" class="" alt="" />
+                                        @else
+                                        <img src='assets/media/avatars/user.png'>
+                                        @endif
                                     </div>
                                     <div class="d-flex justify-content-start flex-column">
-                                        <p class="text-gray-800 fw-bold text-hover-primary mb-1 fs-8"></p>
-                                        <span class="text-gray-400 fw-semibold d-block fs-9"></span>
+                                        <p class="text-gray-800 fw-bold text-hover-primary mb-1 fs-8">{{ $dt->users->name }}</p>
+                                        <span class="text-gray-400 fw-semibold d-block fs-9"> {{ $dt->users->role->role_name }}</span>
                                     </div>
                                 </div>
                             </td>
@@ -94,13 +98,13 @@
                             <td>
                                 @if( $dt->status== 'Diterima')
                                 <div class="visible-print text-center">
-                                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->generate(URL('/show/'.$dt->id_ajuan))) !!}" style="width: 50px;">
+                                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->generate(URL('/show/'.$dt->id_ajuan.$dt->token))) !!}" style="width: 50px;">
                                 </div>
                                 @endif
                             </td>
 
                             <td class="text-start g-1">
-                                @if ($dt->role_id == 1)
+                                @if (auth()->user()->role_id == 1 and $dt->status !='Diterima')
                                 <a href="/accept/{{ $dt->id_ajuan }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-success w-20px h-20px" style="margin-right: 10px" onclick="return confirm('Yakin ingin menerima Permohonan ini?!!!')">
                                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen037.svg-->
                                     <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,6 +115,7 @@
                                     <!--end::Svg Icon-->
                                 </a>
                                 @endif
+                                @if (auth()->user()->role_id != 1)
                                 <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-20px h-20px" style="margin-right: 10px">
                                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen055.svg-->
                                     <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,6 +126,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </a>
+                                @endif
                                 <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-danger w-20px h-20px">
                                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen034.svg-->
                                     <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

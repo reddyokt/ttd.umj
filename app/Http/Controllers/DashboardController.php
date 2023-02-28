@@ -13,7 +13,17 @@ class DashboardController extends Controller
 {
    public function index()
    {
-    $data = Ajuan::all();
+    $role = auth()->user()->role->role_name;
+
+    $data = Ajuan::whereHas('users', function ($q) use($role){
+
+        if($role == 'Koordinator'){
+            $q = $q->where('id', auth()->user()->id);
+        }
+        if($role == 'Staff'){
+            $q = $q->where('id', auth()->user()->id);
+        }
+    })->get();
 
     //dd($data);
      return view ('dashboard.index', compact ('data'));

@@ -20,6 +20,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'profile_picture',
     ];
 
     /**
@@ -48,6 +49,6 @@ class User extends Authenticatable
 
     public function ajuan()
     {
-        return $this->belongsTo(Ajuan::class, 'id', 'created_by' );
+        return $this->belongsTo(Ajuan::class, 'created_by', 'id' );
     }
 }
