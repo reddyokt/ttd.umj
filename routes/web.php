@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AjuanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\KlasifikasiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,4 +33,8 @@ Route::get('/show/{id_ajuan}{token}', [AjuanController::class, 'showtoken']);
 Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create']);
 Route::post('/user/create', [UserController::class, 'store']);
+
+Route::get('/klasifikasi/index', [KlasifikasiController::class, 'index'])->name('klasifikasi.index');
+Route::get('/klasifikasi/create', [KlasifikasiController::class, 'create']);
+Route::post('/klasifikasi/create', [KlasifikasiController::class, 'store']);
 

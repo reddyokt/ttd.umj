@@ -33,7 +33,7 @@
 
 			<!--end::Menu-->
 		</div>
-        <div class="mt-6"><h1>Assalamu'alaikum {{ auth()->user()->name }}</h1></div>
+        {{-- <div class="mt-6"><h1>Assalamu'alaikum {{ auth()->user()->name }}</h1></div> --}}
 		<!--end::Menu wrapper-->
 		<!--begin::Navbar-->
 		<div class="app-navbar flex-shrink-0">

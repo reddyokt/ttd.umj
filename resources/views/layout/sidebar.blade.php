@@ -46,8 +46,8 @@
                         </span>
                         <!--begin:Menu link-->
                         <a class="menu-link" href="{{ route('dashboard.index')}}">
-                            <span class="menu-bullet">
-                            </span>
+                            {{-- <span class="menu-bullet">
+                            </span> --}}
                             <span class="menu-title">Dashboard</span>
                         </a>
                         <!--end:Menu link-->
@@ -57,7 +57,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                @if (auth()->user()->role_id == 1)
+                {{-- @if (auth()->user()->role_id == 1)
                 <div  class="menu-item menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link">
@@ -81,10 +81,12 @@
                     </span>
                     <!--end:Menu link-->
                 </div>
-                @endif
+                @endif --}}
                 <!--end:Menu item-->
+
                 <!--begin:Menu item-->
-                {{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                @if (auth()->user()->role_id == 1)
+              <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -99,7 +101,7 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Account</span>
+                        <span class="menu-title">Master</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <!--end:Menu link-->
@@ -108,11 +110,11 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="../../demo1/dist/account/overview.html">
+                            <a class="menu-link" href="{{ route('user.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Overview</span>
+                                <span class="menu-title">User</span>
                             </a>
                             <!--end:Menu link-->
                         </div>
@@ -120,16 +122,16 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="../../demo1/dist/account/settings.html">
+                            <a class="menu-link" href="{{ route('klasifikasi.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Settings</span>
+                                <span class="menu-title">Klasifikasi Surat</span>
                             </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
-                        <!--begin:Menu item-->
+                        {{-- <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
                             <a class="menu-link" href="../../demo1/dist/account/security.html">
@@ -214,8 +216,10 @@
                         </div>
                         <!--end:Menu item-->
                     </div>
-                    <!--end:Menu sub-->
-                </div> --}}
+                    <!--end:Menu sub-->--}}
+                </div>
+            </div>
+            @endif
 
                 <!--end:Menu item-->
             </div>

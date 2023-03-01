@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('ajuan', function (Blueprint $table) {
             $table->id('id_ajuan');
             $table->foreignId('created_by');
-            $table->string('nama_surat');
-            $table->string('surat_untuk');
+            $table->foreignId('klasifikasi_id');
             $table->text('perihal_surat');
+            $table->string('tujuan_surat');
             $table->enum('jenis_surat',['internal', 'external']);
+            $table->text('revisi')->nullable();
+            $table->string('file_surat')->nullable();
             $table->string('nomor_surat')->nullable();
-            $table->date('tanggal_surat');
+            $table->date('tanggal_surat')->nullable();
             $table->enum('status',['Menunggu', 'Diterima', 'Ditolak'])->default('Menunggu');
             $table->string('token')->unique();
             $table->foreignId('updated_by')->nullable();

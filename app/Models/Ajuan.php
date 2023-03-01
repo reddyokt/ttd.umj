@@ -11,11 +11,17 @@ class Ajuan extends Model
 
     protected $table = 'ajuan';
     protected $primaryKey = 'id_ajuan';
-    protected $fillable = ['created_by','nama_surat','surat_untuk', 'perihal_surat', 'jenis_surat', 'nomor_surat', 'tanggal_surat', 'status','token'];
+    protected $guarded = [];
 
     public function users()
     {
         return $this->hasOne(User::class, 'id', 'created_by' );
     }
+
+    public function klasifikasi()
+    {
+        return $this->hasOne(Klasifikasi::class, 'id_klasifikasi', 'klasifikasi_id' );
+    }
+
 
 }

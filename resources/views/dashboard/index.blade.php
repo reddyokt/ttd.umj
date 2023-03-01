@@ -4,6 +4,8 @@
 
 @section('content')
 
+<div><h5>Assalamu'alaikum {{ auth()->user()->name }}</h5></div>
+
 <!--begin::Card-->
 <div class="card card-flush">
     <!--begin::Card header-->
@@ -24,7 +26,14 @@
             <!--end::Primary button-->
         </div>
         <div class="card-body pt-6">
-            <!--begin::Table container-->
+
+        </div>
+
+    </div>
+    <!--end::Card header-->
+   <!--begin::Card body-->
+    <div class="card-body">
+        <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Table-->
                 <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
@@ -149,16 +158,9 @@
                 </table>
             </div>
             <!--end::Table-->
-        </div>
 
     </div>
-    <!--end::Card header-->
-    {{-- <!--begin::Card body-->
-    <div class="card-body">
-
-
-    </div>
-    <!--end::Card body--> --}}
+    <!--end::Card body-->
 </div>
 <!--end::Card-->
 
@@ -182,12 +184,12 @@
                 <div class="table-responsive">
                     <table class="table gs-2 gy-2 gx-2">
                             <tr>
-                                <td class="w-50">Nama Surat</td>
-                                <td>{{ $dt->nama_surat }}</td>
+                                <td class="w-50">Klasifikasi Surat</td>
+                                <td>{{ $dt->klasifikasi->nama_klasifikasi }}</td>
                             </tr>
                             <tr>
                                 <td class="w-50">Surat Untuk</td>
-                                <td>{{ $dt->surat_untuk }}</td>
+                                <td>{{ $dt->tujuan_surat }}</td>
                             </tr>
                             <tr>
                                 <td class="w-50">Perihal</td>

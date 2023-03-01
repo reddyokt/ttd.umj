@@ -13,19 +13,24 @@
         <div class="card-body pt-3">
     <div class="card-body pt-3">
         <!--begin::Form-->
-        <form class="form" action="/ajuan/create" method="post">
+        <form class="form" action="/ajuan/create" method="post" enctype="multipart/form-data">
             @csrf
             <!--begin::Input group-->
             <input type="hidden" name="created_by" value="{{ auth()->user()->id }}">
             <div class="fv-row mb-3">
                 <!--begin::Label-->
                 <label class="fs-6 fw-semibold form-label mt-3">
-                    <span class="required">Nama Surat/Dokumen</span>
+                    <span class="required">Klasifikasi Surat</span>
                     <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan Nama surat"></i>
                 </label>
                 <!--end::Label-->
                 <!--begin::Input-->
-                <input type="text" class="form-control form-control-solid" name="nama_surat" value="" />
+                <select class="form-control form-control-solid" name="klasifikasi_id" required>
+                    <option selected disabled>Pilih Klasifikasi Surat </option>
+                    @foreach ( $klas as $klas )
+                        <option value="{{ $klas->id_klasifikasi }}">{{ $klas->nama_klasifikasi }}</option>
+                    @endforeach
+                </select>
                 <!--end::Input-->
             </div>
             <!--end::Input group-->
@@ -33,12 +38,12 @@
             <div class="fv-row mb-3">
                 <!--begin::Label-->
                 <label class="fs-6 fw-semibold form-label mt-3">
-                    <span class="required"> Surat/Dokumen Untuk?</span>
+                    <span class="required"> Tujuan Surat</span>
                     <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan Tujuan surat"></i>
                 </label>
                 <!--end::Label-->
                 <!--begin::Input-->
-                <input type="text" class="form-control form-control-solid" name="surat_untuk" value="" />
+                <input type="text" class="form-control form-control-solid" name="tujuan_surat" value="" required />
                 <!--end::Input-->
             </div>
             <!--end::Input group-->
@@ -51,7 +56,7 @@
                 </label>
                 <!--end::Label-->
                 <!--begin::Input-->
-                <textarea class="form-control form-control-solid" name="perihal_surat"></textarea>
+                <textarea class="form-control form-control-solid" name="perihal_surat" required></textarea>
                 <!--end::Input-->
             </div>
             <!--end::Input group-->
@@ -68,7 +73,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <select class="form-control form-control-solid" name="jenis_surat">
+                        <select class="form-control form-control-solid" name="jenis_surat" required>
                             <option selected disabled>Pilih Jenis Surat/Dokumen</option>
                             <option value="internal">Internal</option>
                             <option value="external">External</option>
@@ -104,12 +109,23 @@
                             <i class="fas fa-question-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan Tanggal Surat"></i>
                         </label>
                             <!--begin::Input-->
-                                <input class="form-control form-control-solid" type="text" id="datepicker" name="tanggal_surat">
+                                <input class="form-control form-control-solid" type="text" id="datepicker" name="tanggal_surat" required>
                             <!--end::Input-->
                     </div>
                 <!--end::Input-->
                     </div>
                     <!--end::Input group-->
+                </div>
+                <!--end::Col-->
+                 <!--begin::Col-->
+                <div class="col">
+                    <!--begin::Input group-->
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span class="required">File Surat</span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Masukkan File Surat"></i>
+                    </label>
+                    <input class="form-control form-control-solid" type="file" name="file_surat" accept="application/msword, application/pdf">
+                    <!--end::Input-->
                 </div>
                 <!--end::Col-->
             </div>
