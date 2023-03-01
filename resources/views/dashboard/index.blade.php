@@ -31,11 +31,13 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fs-7 fw-bold text-gray-400 border-bottom-0">
+                            @if(auth()->user()->role_id == 1)
                             <th class="p-0 pb-3 min-w-200px text-start">Nama Pemohon</th>
-                            <th class="p-0 pb-3 min-w-50px text-center">No Ajuan </th>
-                            <th class="p-0 pb-3 min-w-300px text-center">Detail Surat/Ajuan</th>
-                            <th class="p-0 pb-3 min-w-150px text-center">Status</th>
-                            <th class="p-0 pb-3 min-w-175px text-center">QR-CODE</th>
+                            @endif
+                            <th class="p-0 pb-3 min-w-50px text-start">No Ajuan </th>
+                            <th class="p-0 pb-3 min-w-300px text-start">Detail Surat/Ajuan</th>
+                            <th class="p-0 pb-3 min-w-150px text-start">Status</th>
+                            <th class="p-0 pb-3 min-w-175px text-start">QR-CODE</th>
                             <th class="p-0 pb-3 w-100px text-center pe-12">Action</th>
                         </tr>
                     </thead>
@@ -44,6 +46,7 @@
                     <tbody>
                         @foreach ($data as $dt )
                         <tr>
+                            @if(auth()->user()->role_id == 1)
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-50px me-3">
@@ -59,6 +62,7 @@
                                     </div>
                                 </div>
                             </td>
+                            @endif
                             <td class="text-start pe-0">
                                 <span class="text-gray-600 fw-bold fs-8">00{{ $dt->id_ajuan }}</span>
                             </td>
@@ -82,7 +86,7 @@
                                     </a>
                                 </span>
                             </td>
-                            <td class="text-center pe-0">
+                            <td class="text-start pe-0">
                                 <!--begin::Label-->
                                 <span class="badge badge-light-{{ $dt->status == 'Menunggu' ? 'warning' : 'success' }} fs-8">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
@@ -95,9 +99,9 @@
                                 <!--end::Svg Icon-->{{ $dt->status }}</span>
                                 <!--end::Label-->
                             </td>
-                            <td>
+                            <td class="text-start pe-0">
                                 @if( $dt->status== 'Diterima')
-                                <div class="visible-print text-center">
+                                <div class="visible-print text-start">
                                     <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->generate(URL('/show/'.$dt->id_ajuan.$dt->token))) !!}" style="width: 50px;">
                                 </div>
                                 @endif

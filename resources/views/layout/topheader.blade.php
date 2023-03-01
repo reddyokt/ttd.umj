@@ -124,7 +124,7 @@
                     @if(!empty(Session::get('picture')) && file_exists(base_path() . '/public/upload/profile_picture/'.Session::get('picture')))
                     <img src="{{asset('upload/profile_picture/'.Session::get('picture'))}}" alt="user" />
                     @else
-                    <img src="{{asset('assets/media/users/default.jpg')}}" alt="user" />
+                    <img src="{{URL(auth()->user()->profile_picture) }}" alt="user" />
                     @endif
 				</div>
 				<!--begin::User account menu-->
@@ -133,11 +133,11 @@
 					<div class="menu-item px-3">
 						<div class="menu-content d-flex align-items-center px-3">
 							<!--begin::Avatar-->
-							<div class="symbol symbol-50px me-5">
+							<div class="symbol me-5">
                             @if(!empty(Session::get('picture')) && file_exists(base_path() . '/public/upload/profile_picture/'.Session::get('picture')))
-                            <img alt="Logo" src="" />
+                            <img alt="Logo" src="{{asset('assets/media/mini-icon-umj.png')}}" style="height: 10%; width:10%" />
                             @else
-                            <img alt="Logo" src="" />
+                            <img alt="Logo" src="{{asset('assets/media/mini-icon-umj.png')}}" style="height: 10%; width:10%" />
                             @endif
 							</div>
 							<!--end::Avatar-->

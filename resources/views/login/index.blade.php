@@ -37,7 +37,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            <form action="/login" method="post">
+            <form action="/" method="post">
                 @csrf
                 <img class="mb-2 mx-auto d-block" src="../img/simlab.png" alt="" width="30%">
                 <h1 class="h5 mb-3 fw-normal">Please Login</h1>
