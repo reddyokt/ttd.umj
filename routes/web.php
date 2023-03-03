@@ -28,7 +28,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/ajuan/create', [AjuanController::class, 'create']);
 Route::post('/ajuan/create', [AjuanController::class, 'store']);
 Route::get('/accept/{id_ajuan}', [AjuanController::class, 'accept']);
+Route::post('/reject/{id_ajuan}', [AjuanController::class, 'reject']);
 Route::get('/show/{id_ajuan}{token}', [AjuanController::class, 'showtoken']);
+Route::get('/ajuan/edit/{id_ajuan}', [AjuanController::class, 'edit']);
+Route::post('/ajuan/edit/{id_ajuan}', [AjuanController::class, 'storeedit']);
 
 Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create']);

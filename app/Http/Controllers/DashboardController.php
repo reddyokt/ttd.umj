@@ -23,9 +23,18 @@ class DashboardController extends Controller
         if($role == 'Staff'){
             $q = $q->where('id', auth()->user()->id);
         }
+    })->where('status', 'Menunggu')->get();
+
+    $dataPemohon = Ajuan::whereHas('users', function ($q) use($role){
+
+        if($role == 'Koordinator'){
+            $q = $q->where('id', auth()->user()->id);
+        }
+        if($role == 'Staff'){
+            $q = $q->where('id', auth()->user()->id);
+        }
     })->get();
 
-    //dd($data);
-     return view ('dashboard.index', compact ('data'));
+     return view ('dashboard.index', compact ('data', 'dataPemohon'));
    }
 }

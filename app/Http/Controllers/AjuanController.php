@@ -58,10 +58,55 @@ class AjuanController extends Controller
         return redirect ('/dashboard')->with('success', 'Permohonan Tanda Tangan disetujui');
     }
 
+    public function reject(Request $request, $id_ajuan)
+    {
+        //dd($request->toArray());
+        $reject = Ajuan::find($id_ajuan);
+        $reject->update([
+                        'status'=>'Ditolak',
+                        'revisi' => $request->revisi,
+                        ]);
+
+        return redirect ('/dashboard')->with('success', 'Permohonan ini telah ditolak');
+    }
+
     public function showtoken($id_ajuan)
     {
         $data = Ajuan ::find($id_ajuan);
 
         return view ('showQR.page', compact ('data'));
+    }
+
+    public function edit($id_ajuan)
+    {
+        $klas = Klasifikasi::where('is_active', 'Aktif')->get();
+        $edit = Ajuan::find($id_ajuan);
+
+        //dd($edit);
+
+        return view ('ajuan.edit', compact ('edit','klas'));
+    }
+
+    public function storeedit(Request $request, $id_ajuan)
+
+    {
+
+        //dd($request->toArray());
+        $storeedit = Ajuan::find($id_ajuan);
+        if($request->file('file_surat')) {
+            $storeedit['file_surat'] = $request->file('file_surat')->store('file_surat');
+        }
+        $storeedit->update([
+            'status' => $request->status,
+            'tanggal_surat' => $request->tanggal_surat,
+            'klasifikasi_id' => $request->klasifikasi_id,
+            'perihal_surat' => $request->perihal_surat,
+            'tujuan_surat' => $request->tujuan_surat,
+            'jenis_surat' => $request->jenis_surat,
+            'nomor_surat' => $request->nomor_surat,
+    ]);
+
+
+           return redirect ('/dashboard')->with('success', 'Permohonan Tanda Tangan berhasil diubah');
     }
 }
